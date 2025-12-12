@@ -1,0 +1,41 @@
+# definir cores
+VERMELHO = '\033[91m'
+AZUL = '\033[94m'
+RESET = '\033[0m ' #resetar a cor padrão
+
+#nome do personagem
+nome_personagem = input("nome_do_personagem")
+
+#cores das palavras
+palavras_chave = {
+"Mapa": AZUL + "Mapa" + RESET,
+"Tesouro": AZUL + "Tesouro" + RESET,
+"Baú": AZUL + "Baú" + RESET }
+
+
+# a cor do nome do personagem é vermelho
+
+nome_cor = VERMELHO + nome_personagem + RESET
+
+#historia
+
+historia = f"""Era uma vez, uma aventureira destemida chamada {nome_personagem}.
+Dora encontrou um antigo Mapa empoeirado, que indicava a localização de um lendário Tesouro.
+O Mapa mostrava um caminho perigoso, cheio de mistérios.
+Sem hesitar, {nome_personagem} partiu em busca da fortuna.
+
+Após dias de jornada, {nome_personagem} chegou a uma caverna escura.
+Lá dentro, no centro de uma câmara secreta, estava o Baú.
+A chave para o Baú estava escondida sob uma pedra próxima.
+Com o coração acelerado, {nome_personagem} abriu o Baú e finalmente encontrou o Tesouro.
+Era tudo que o Mapa prometia! {nome_personagem} se tornou a lenda da busca pelo Tesouro."""
+
+#palavras chaves coloridas
+
+historia_cor = historia.replace(nome_personagem, nome_cor)
+for palavra, cor in palavras_chave.items():
+    historia_cor = historia_cor.replace(palavra, cor)
+
+#immprimir a historia
+
+print(f"\n{historia_cor}")

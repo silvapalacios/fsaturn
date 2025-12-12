@@ -8,7 +8,7 @@ print("JOGO GENIUS")
 print("Repita a sequência de cores\n")
 
 while True:
-    # adiciona uma cor aleatória
+    
     sequencia.append(random.choice(cores))
 
     print("Sequência:")

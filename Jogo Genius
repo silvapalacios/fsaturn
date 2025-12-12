@@ -1,0 +1,36 @@
+import random
+
+cores = ["VERMELHO", "AZUL", "VERDE", "AMARELO"]
+sequencia = []
+pontos = 0
+
+print("JOGO GENIUS")
+print("Repita a sequência de cores\n")
+
+while True:
+    # adiciona uma cor aleatória
+    sequencia.append(random.choice(cores))
+
+    print("Sequência:")
+    for cor in sequencia:
+        print(cor)
+
+    print("\nDigite a sequência:")
+
+    erro = False
+
+    for i in range(len(sequencia)):
+        resposta = input("Cor: ").upper()
+        if resposta != sequencia[i]:
+            erro = True
+            break
+
+    if erro:
+        print("\nVocê errou!")
+        print("Pontuação final:", pontos)
+        break
+    else:
+        pontos = pontos + 1
+        print("\nVocê acertou!")
+        print("Pontuação:", pontos)
+        print("____________________")

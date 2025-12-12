@@ -1,0 +1,50 @@
+function onFormSubmit(e) {
+  try {
+    
+    if (e && e.values) {
+      
+      var destinatario = "recursos-cinmot@motorola.com";
+
+      
+      var mapeamentoPerguntas = {
+        "PROPRIEDADE": {
+          "DATA": 1,
+          "EMAIL DO SOLICITANTE": 2,
+          "PROPRIEDADE": 4,
+          "SOLICITANTE": 5,
+          "NUMERO DO GAVETEIRO": 7
+        },
+        "SEÇÃO 2": {
+          "SOLICITANTE": 9,
+          "TIME": 10,
+          "SOLICITADO": 11,
+          "NUMERO DO GAVETEIRO": 12,
+          "RECURSO SOLICITADO": 14,
+          "ID ARAS": 15
+        }
+      };
+
+      var corpoEmail = "<b>Nova Solicitação de Chave:</b><br><br>\n\n";
+
+      for (var secao in mapeamentoPerguntas) {
+        corpoEmail += "<b>" + secao + "</b><br>";
+        var perguntas = mapeamentoPerguntas[secao];
+        for (var pergunta in perguntas) {
+          if (perguntas.hasOwnProperty(pergunta)) {
+            var numeroPergunta = perguntas[pergunta];
+            var resposta = e.values[numeroPergunta - 1];
+            corpoEmail += "<b>" + pergunta + ":</b> " + resposta + "<br>";
+          }
+        }
+        corpoEmail += "<br>";
+      }
+
+      GmailApp.sendEmail(destinatario, "Nova Solicitação de Chave", "", {
+        htmlBody: corpoEmail
+      });
+    } else {
+      Logger.log("Evento não é um envio de formulário.");
+    }
+  } catch (erro) {
+    Logger.log("Erro: " + erro.toString());
+  }
